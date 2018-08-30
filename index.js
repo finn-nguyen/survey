@@ -5,7 +5,10 @@ const cookieSession = require('cookie-session')
 const passport = require('passport')
 const mongoose = require('mongoose')
 const keys = require('./config/keys')
+const bodyParser = require('body-parser')
 mongoose.connect(keys.mongoURI)
+
+app.use(bodyParser.json())
 
 app.use(
   cookieSession({
