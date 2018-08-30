@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const cookieSession = require('cookie-session')
@@ -16,7 +17,6 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-require('dotenv').config()
 require('./services/passport')
 require('./routes/authRoutes')(app)
 
