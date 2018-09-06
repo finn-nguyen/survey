@@ -1,5 +1,7 @@
 const requireLogin = require('../middlewares/requireLogin')
-
+const requireCredits = require('../middlewares/requireCredits')
+const Mailer = require('../services/mailer')
+const surveyTemplate = require('../services/emailTemplates')
 const Survey = require('../models/Survey')
 
 module.exports = app => {
@@ -13,5 +15,8 @@ module.exports = app => {
       _user: req.user.id,
       dateSent: Date.now()
     })
+    // send email
+    const mailer = new Mailer(survey, surveyTemplate(survey))
+    mailer.send()
   })
 }
