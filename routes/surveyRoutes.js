@@ -62,4 +62,10 @@ module.exports = app => {
     })
     res.send({})
   })
+
+  app.get('/api/surveys', async(req, res) => {
+    const surveys = await Survey.find({ _user: req.user.id })
+      .select({ recipients: false })
+    res.send(surveys)
+  })
 }
